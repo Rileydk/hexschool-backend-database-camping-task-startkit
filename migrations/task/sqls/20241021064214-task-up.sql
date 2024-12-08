@@ -252,7 +252,7 @@ values
 -- 5-4. 查詢：取得王小明所有的預約紀錄，包含取消預約的紀錄
 
 select 
-	"USER"."name" as user,
+	"USER".name as user,
 	"COURSE_BOOKING".course_id, 
 	"COURSE_BOOKING".status
 from "COURSE_BOOKING"
