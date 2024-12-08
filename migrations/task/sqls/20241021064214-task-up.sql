@@ -304,6 +304,17 @@ group by user_id;
 -- 6-1 查詢：查詢專長為重訓的教練，並按經驗年數排序，由資深到資淺（需使用 inner join 與 order by 語法)
 -- 顯示須包含以下欄位： 教練名稱 , 經驗年數, 專長名稱
 
+select
+	"USER".name as 教練名稱,
+	"COACH".experience_years as 經驗年數,
+	"SKILL".name as 專長名稱
+from "COACH_LINK_SKILL"
+join "COACH" on "COACH_LINK_SKILL".coach_id = "COACH".id
+join "USER" on "COACH".user_id = "USER".id
+join "SKILL" on "COACH_LINK_SKILL".skill_id = "SKILL".id
+where skill_id = (select id from "SKILL" where name = '重訓')
+order by "COACH".experience_years ;
+
 -- 6-2 查詢：查詢每種專長的教練數量，並只列出教練數量最多的專長（需使用 group by, inner join 與 order by 與 limit 語法）
 -- 顯示須包含以下欄位： 專長名稱, coach_total
 
