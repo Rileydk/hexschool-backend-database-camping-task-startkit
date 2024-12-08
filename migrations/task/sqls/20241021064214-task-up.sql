@@ -330,6 +330,11 @@ limit 1;
 -- 6-3. 查詢：計算 11 月份組合包方案的銷售數量
 -- 顯示須包含以下欄位： 組合包方案名稱, 銷售數量
 
+select
+	sum(purchased_credits)
+from "CREDIT_PURCHASE"
+where created_at between '2024-11-01 00:00:00' and '2024-11-30 23:59:59';
+
 -- 6-4. 查詢：計算 11 月份總營收（使用 purchase_at 欄位統計）
 -- 顯示須包含以下欄位： 總營收
 
