@@ -293,6 +293,14 @@ group by user_id;
     -- inner join ( 用戶王小明的已使用堂數) as "COURSE_BOOKING"
     -- on "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id;
 
+select
+	"CREDIT_PURCHASE".user_id,
+	sum(distinct "CREDIT_PURCHASE".purchased_credits) - count(distinct "COURSE_BOOKING".id) as remaining_credit
+from "CREDIT_PURCHASE"
+join "COURSE_BOOKING" on "CREDIT_PURCHASE".user_id = "COURSE_BOOKING".user_id
+where "CREDIT_PURCHASE".user_id = (select id from "USER" where email = 'wXlTq@hexschooltest.io')
+group by "CREDIT_PURCHASE".user_id;
+
 
 -- ████████  █████   █     ███  
 --   █ █   ██    █  █     █     
